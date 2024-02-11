@@ -1,0 +1,27 @@
+type: executable
+name: "find-msvc"
+
+cxx-standard: 17
+
+inherit-caller-in-deps: true
+
+deps:
+  - vcpkg:nlohmann-json
+  - github:k2rate/ulib-process ^1.0.2 [/ulib-process]
+  - github:osdeverr/futile ^3.1.2 [/futile]
+
+cxx-link-deps:
+  - Advapi32.lib
+
+cxx-build-flags:
+  compiler:
+    - /utf-8
+    - /EHsc
+
+tasks:
+  install-vswhere:
+    run: always
+    post-build:
+      - install:
+          from: ${path}/vswhere.exe
+          to: .

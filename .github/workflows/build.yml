@@ -1,0 +1,46 @@
+name: build
+
+on:
+  push:
+    tags:
+      - "*.*.*"
+    paths-ignore: 
+      - .github/**
+      - README.md
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [windows-latest]
+        arch: [x64]
+        config: [release]
+
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Re
+        uses: osdeverr/actions-setup-re@v3
+      
+      - name: Set up VsDevCmd
+        if: runner.os == 'Windows'
+        uses: egor-tensin/vs-shell@v2
+        with:
+          arch: ${{ matrix.arch }}
+    
+      - name: Build the project
+        run: re --arch ${{ matrix.arch }} --configuration ${{ matrix.config }}
+      
+      - name: Create CI artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: find-msvc.exe
+          path: ./out/${{ matrix.arch }}-windows-${{ matrix.config }}/find-msvc/find-msvc.exe
+          
+      - name: Create release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ./out/${{ matrix.arch }}-windows-${{ matrix.config }}/find-msvc/find-msvc.exe
