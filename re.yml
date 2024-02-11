@@ -17,11 +17,3 @@ cxx-build-flags:
   compiler:
     - /utf-8
     - /EHsc
-
-tasks:
-  install-vswhere:
-    run: always
-    post-build:
-      - install:
-          from: ${path}/vswhere.exe
-          to: .
