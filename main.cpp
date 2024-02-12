@@ -133,6 +133,7 @@ int main(int argc, char **argv)
         env["WindowsSDKVersion"] = result["winsdk_version"];
         env["WindowsSdkBinPath"] = (winsdk_directory / "bin").generic_u8string();
         env["WindowsSdkVerBinPath"] = result["winsdk_bin"];
+        env["VSINSTALLDIR"] = result["vs_install_dir"];
         env["INCLUDE"] = ulib::join(include_dirs, ";");
 
         std::cout << result.dump(4) << std::endl;
