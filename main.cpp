@@ -54,8 +54,6 @@ int main(int argc, char **argv)
         }
 
         auto vswhere_stuff_u = vswhere.out().read_all();
-        vswhere_stuff_u.MarkZeroEnd();
-
         auto vswhere_stuff_text = ulib::u8(vswhere_stuff_u);
 
         auto vswhere_stuff = nlohmann::json::parse(vswhere_stuff_text);
