@@ -2,7 +2,9 @@
 
 **find-msvc** is a single-file, dependency-free executable that finds the latest installed Visual C++ development tools and the Windows SDK.
 
-Unlike vswhere, find-msvc finds not just the Visual Studio installation but all the paths, versions and envrionment variables required to run the C++ build toolchain.
+**[ - Download find-msvc](https://github.com/osdeverr/find-msvc/releases/latest/download/find-msvc.exe)**
+
+Unlike Microsoft's official `vswhere` tool, find-msvc finds not just the Visual Studio installation but all the paths, versions and envrionment variables required to run the C++ build toolchain.
 
 This is helpful to set up a clean C++ work environment in scripts without invoking the clunky Visual Studio Developer Command Prompt with its .bat files and whatnot.
 
